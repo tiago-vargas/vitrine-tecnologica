@@ -5,6 +5,15 @@ import "./App.css";
 function App() {
 	return (
 		<div className="App">
+			<div className="Top-bar">
+				<a className="logo link" href="#home">Vitrine Tecnológica</a>
+				<nav>
+						<a className="item link" href="#home">Início</a>
+						<a className="item link" href="#laboratories">Laboratórios</a>
+						<a className="item link" href="#about">Sobre</a>
+						<a className="item link" href="#contact">Contato</a>
+				</nav>
+			</div>
 			<header className="App-header">
 				<img src={logo} className="App-logo" alt="logo" />
 				<p>
