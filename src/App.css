@@ -1,5 +1,5 @@
 :root {
-	--dark-1: #606C38;
+	--dark-1: rgb(96, 108, 56);
 	--dark-2: #283618;
 	--bright-1: #FEFAE0;
 	--bright-2: #DDA15E;
@@ -18,6 +18,33 @@
 	}
 }
 
+html {
+	padding-bottom: 2rem;
+	color: var(--primary-color);
+	background-color: var(--background-color);
+}
+
+h1 {
+	margin-bottom: 0.78rem;
+}
+
+h2 {
+	margin-bottom: 0.71rem;
+}
+
+h3 {
+	margin-bottom: 0.56rem;
+}
+
+h4 {
+	margin-bottom: 0.44rem;
+}
+
+p {
+	margin-top: 0;
+	margin-bottom: 2.6rem;
+}
+
 .App {
 	text-align: center;
 }
@@ -34,29 +61,20 @@
 }
 
 .App-header {
-	background-color: #282c34;
+	padding: 1rem;
+    background: linear-gradient(180deg, var(--accent-color), var(--background-color)); /* Gradient background */
 	min-height: 100vh;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
 	font-size: calc(10px + 2vmin);
-	color: white;
+	color: var(--primary-color);
 }
 
 .App-link {
 	color: #61dafb;
 }
-
-@keyframes App-logo-spin {
-	from {
-		transform: rotate(0deg);
-	}
-	to {
-		transform: rotate(360deg);
-	}
-}
-
 
 .Top-bar {
 	display: flex;
@@ -66,7 +84,12 @@
 	padding: 0;
 	width: 100%;
 	position: fixed;
-	background-color: var(--dark-1);
+	background-color: var(--accent-color);
+    backdrop-filter: blur(10px); Blur effect
+
+	.at-top {
+		background-color: transparent;
+	}
 
 	.logo {
 		margin: 1rem;
@@ -81,5 +104,13 @@
 	.link {
 		text-decoration: none;
 		color: var(--primary-color);
+	}
+}
+
+main {
+	background-color: var(--background-color);
+
+	label {
+		font-weight: bold;
 	}
 }
