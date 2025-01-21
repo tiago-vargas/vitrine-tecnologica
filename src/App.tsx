@@ -6,29 +6,36 @@ function App() {
 			<div className="Top-bar">
 				<a className="logo link" href="#home">Vitrine Tecnológica</a>
 				<nav>
-						<a className="item link" href="#home">Início</a>
-						<a className="item link" href="#laboratories">Laboratórios</a>
-						<a className="item link" href="#about">Sobre</a>
-						<a className="item link" href="#contact">Contato</a>
+					<a className="item link" href="#home">Início</a>
+					<a className="item link" href="#laboratories">Laboratórios</a>
+					<a className="item link" href="#about">Sobre</a>
+					<a className="item link" href="#contact">Contato</a>
 				</nav>
 			</div>
+			<Home />
+		</div>
+	);
+}
 
+function Home() {
+	return (
+		<div>
 			<header className="App-header">
 				<h1>Vitrine Tecnológica do IFCE</h1>
 				<p>Veja nossos laboratórios disponíveis e requisite nossos serviços</p>
 			</header>
 
 			<main>
-				<section>
+				<section id="laboratories">
 					<h2>Laboratórios</h2>
 					<p>Conheça nossos laboratórios disponíveis</p>
-					<a href="/labs">Conferir</a>
+					<a href="#laboratories">Conferir</a>
 				</section>
-				<section>
+				<section id="about">
 					<h2>Sobre</h2>
 					<p>Conheça mais sobre a Vitrine Tecnológica</p>
 				</section>
-				<section>
+				<section id="contact">
 					<h2>Contato</h2>
 					<p>Entre em contato conosco</p>
 
