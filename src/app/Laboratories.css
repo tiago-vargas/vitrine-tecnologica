@@ -6,7 +6,7 @@
 	border-radius: 12px;
 	border-left: 12px solid var(--accent-color);
 	padding: 1rem;
-	margin: 1rem;
+	margin: 1rem auto;
 	transition: background-color 0.25s ease;
 	text-align: left;
 
