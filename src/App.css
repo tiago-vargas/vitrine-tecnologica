@@ -4,10 +4,14 @@
 	--bright-1: #FEFAE0;
 	--bright-2: #DDA15E;
 	--bright-3: #BC6C25;
+}
 
-	--primary-color: var(--dark-2);
-	--background-color: var(--bright-1);
-	--accent-color: var(--bright-2);
+@media (prefers-color-scheme: light) {
+	:root {
+		--primary-color: var(--dark-2);
+		--background-color: var(--bright-1);
+		--accent-color: var(--bright-2);
+	}
 }
 
 @media (prefers-color-scheme: dark) {
@@ -22,58 +26,43 @@ html {
 	padding-bottom: 2rem;
 	color: var(--primary-color);
 	background-color: var(--background-color);
-}
 
-h1 {
-	margin-bottom: 0.78rem;
-}
+	h1 {
+		margin-bottom: 0.78rem;
+	}
 
-h2 {
-	margin-bottom: 0.71rem;
-}
+	h2 {
+		margin-bottom: 0.71rem;
+	}
 
-h3 {
-	margin-bottom: 0.56rem;
-}
+	h3 {
+		margin-bottom: 0.56rem;
+	}
 
-h4 {
-	margin-bottom: 0.44rem;
-}
+	h4 {
+		margin-bottom: 0.44rem;
+	}
 
-p {
-	margin-top: 0;
-	margin-bottom: 2.6rem;
+	p {
+		margin-top: 0;
+		margin-bottom: 2.6rem;
+	}
 }
 
 .App {
 	text-align: center;
-}
 
-.App-logo {
-	height: 40vmin;
-	pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-	.App-logo {
-		animation: App-logo-spin infinite 20s linear;
+	header {
+		padding: 1rem;
+		background: linear-gradient(180deg, var(--accent-color), var(--background-color)); /* Gradient background */
+		min-height: 100vh;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		font-size: calc(10px + 2vmin);
+		color: var(--primary-color);
 	}
-}
-
-.App-header {
-	padding: 1rem;
-    background: linear-gradient(180deg, var(--accent-color), var(--background-color)); /* Gradient background */
-	min-height: 100vh;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	font-size: calc(10px + 2vmin);
-	color: var(--primary-color);
-}
-
-.App-link {
-	color: #61dafb;
 }
 
 .Top-bar {
@@ -85,11 +74,6 @@ p {
 	width: 100%;
 	position: fixed;
 	background-color: var(--accent-color);
-    backdrop-filter: blur(10px); Blur effect
-
-	.at-top {
-		background-color: transparent;
-	}
 
 	.logo {
 		margin: 1rem;

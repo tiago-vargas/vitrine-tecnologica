@@ -33,7 +33,7 @@ function NavBar() {
 function Home() {
 	return (
 		<div>
-			<header className="App-header">
+			<header>
 				<h1>Vitrine Tecnológica do IFCE</h1>
 				<p>Veja nossos laboratórios disponíveis e requisite nossos serviços</p>
 			</header>
@@ -52,8 +52,8 @@ function Home() {
 					<h2>Contato</h2>
 					<p>Entre em contato conosco</p>
 
-					<label htmlFor="telephone">Telefone</label>
-					<p id="telephone">(85) 3307-3665</p>
+					<label htmlFor="phone">Telefone</label>
+					<p id="phone">(85) 3307-3665</p>
 
 					<label htmlFor="email">Email</label>
 					<p id="email">blablabla@exemplo.com.br</p>
