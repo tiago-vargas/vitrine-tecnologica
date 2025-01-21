@@ -5,21 +5,27 @@ import Laboratories from "./app/Laboratories";
 function App() {
 	return (
 		<div className="App">
-			<div className="Top-bar">
-				<a className="logo link" href="/">Vitrine Tecnológica</a>
-				<nav>
-					<a className="item link" href="/">Início</a>
-					<a className="item link" href="/laboratorios">Laboratórios</a>
-					<a className="item link" href="#sobre">Sobre Nós</a>
-					<a className="item link" href="#contato">Contato</a>
-				</nav>
-			</div>
+			<NavBar />
 			<Router>
 				<Routes>
 					<Route index element={<Home />} />
 					<Route path="laboratorios" element={<Laboratories />} />
 				</Routes>
 			</Router>
+		</div>
+	);
+}
+
+function NavBar() {
+	return (
+		<div className="Top-bar">
+			<a className="logo link" href="/">Vitrine Tecnológica</a>
+			<nav>
+				<a className="item link" href="/">Início</a>
+				<a className="item link" href="/laboratorios">Laboratórios</a>
+				<a className="item link" href="#sobre">Sobre Nós</a>
+				<a className="item link" href="#contato">Contato</a>
+			</nav>
 		</div>
 	);
 }
