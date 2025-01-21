@@ -1,18 +1,25 @@
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.css";
+import Laboratories from "./app/Laboratories";
 
 function App() {
 	return (
 		<div className="App">
 			<div className="Top-bar">
-				<a className="logo link" href="#home">Vitrine Tecnológica</a>
+				<a className="logo link" href="/">Vitrine Tecnológica</a>
 				<nav>
-					<a className="item link" href="#home">Início</a>
-					<a className="item link" href="#laboratories">Laboratórios</a>
-					<a className="item link" href="#about">Sobre</a>
-					<a className="item link" href="#contact">Contato</a>
+					<a className="item link" href="/">Início</a>
+					<a className="item link" href="/laboratorios">Laboratórios</a>
+					<a className="item link" href="#sobre">Sobre Nós</a>
+					<a className="item link" href="#contato">Contato</a>
 				</nav>
 			</div>
-			<Home />
+			<Router>
+				<Routes>
+					<Route index element={<Home />} />
+					<Route path="laboratorios" element={<Laboratories />} />
+				</Routes>
+			</Router>
 		</div>
 	);
 }
@@ -26,16 +33,16 @@ function Home() {
 			</header>
 
 			<main>
-				<section id="laboratories">
+				<section id="laboratorios">
 					<h2>Laboratórios</h2>
 					<p>Conheça nossos laboratórios disponíveis</p>
-					<a href="#laboratories">Conferir</a>
+					<a href="/laboratorios">Conferir</a>
 				</section>
-				<section id="about">
-					<h2>Sobre</h2>
+				<section id="sobre-nos">
+					<h2>Sobre Nós</h2>
 					<p>Conheça mais sobre a Vitrine Tecnológica</p>
 				</section>
-				<section id="contact">
+				<section id="contato">
 					<h2>Contato</h2>
 					<p>Entre em contato conosco</p>
 
