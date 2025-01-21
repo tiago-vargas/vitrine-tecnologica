@@ -1,0 +1,172 @@
+{
+	"laboratory": [
+		{
+			"id": 6,
+			"name": "LabVICIA",
+			"description": "Laboratório de Visão Computacional e Inteligência Artificial",
+			"responsibleProfessorId": 5
+		},
+		{
+			"id": 7,
+			"name": "LaTIM",
+			"description": "Laboratório de Tecnologia da Informação de Maracanaú",
+			"responsibleProfessorId": 5
+		},
+		{
+			"id": 8,
+			"name": "LAESE",
+			"description": "Description 8",
+			"responsibleProfessorId": 5
+		},
+		{
+			"id": 9,
+			"name": "LASIC",
+			"description": "Laboratório de Sistemas e Inteligência Computacional",
+			"responsibleProfessorId": 5
+		}
+	],
+	"professor": [
+		{
+			"id": 1,
+			"name": "Professor 1",
+			"email": "professor.1@email.com",
+			"areaOfExpertise": "Area 1"
+		},
+		{
+			"id": 2,
+			"name": "Professor 2",
+			"email": "professor.2@email.com",
+			"areaOfExpertise": "Area 2"
+		},
+		{
+			"id": 3,
+			"name": "Professor 3",
+			"email": "professor.3@email.com",
+			"areaOfExpertise": "Area 3"
+		},
+		{
+			"id": 4,
+			"name": "Professor 4",
+			"email": "professor.4@email.com",
+			"areaOfExpertise": "Area 4"
+		},
+		{
+			"id": 5,
+			"name": "Professor 5",
+			"email": "professor.5@email.com",
+			"areaOfExpertise": "Area 5"
+		},
+		{
+			"id": 6,
+			"name": "Professor 6",
+			"email": "professor.6@email.com",
+			"areaOfExpertise": "Area 6"
+		},
+		{
+			"id": 7,
+			"name": "Professor 7",
+			"email": "professor.7@email.com",
+			"areaOfExpertise": "Area 7"
+		}
+	],
+	"laboratoryCollaborator": [
+		{
+			"id": 1,
+			"laboratoryId": 1,
+			"professorId": 1
+		},
+		{
+			"id": 2,
+			"laboratoryId": 2,
+			"professorId": 2
+		},
+		{
+			"id": 3,
+			"laboratoryId": 3,
+			"professorId": 3
+		},
+		{
+			"id": 4,
+			"laboratoryId": 1,
+			"professorId": 4
+		},
+		{
+			"id": 5,
+			"laboratoryId": 2,
+			"professorId": 4
+		},
+		{
+			"id": 6,
+			"laboratoryId": 1,
+			"professorId": 5
+		},
+		{
+			"id": 7,
+			"laboratoryId": 3,
+			"professorId": 6
+		},
+		{
+			"id": 8,
+			"laboratoryId": 2,
+			"professorId": 7
+		}
+	],
+	"serviceRequest": [
+		{
+			"id": 1,
+			"laboratoryId": 1,
+			"requesterName": "Requester 1",
+			"requesterEmail": "requester.1@email.com",
+			"description": "Description 1"
+		},
+		{
+			"id": 2,
+			"laboratoryId": 2,
+			"requesterName": "Requester 2",
+			"requesterEmail": "requester.2@email.com",
+			"description": "Description 2"
+		},
+		{
+			"id": 3,
+			"laboratoryId": 3,
+			"requesterName": "Requester 3",
+			"requesterEmail": "requester.3@email.com",
+			"description": "Description 3"
+		},
+		{
+			"id": 4,
+			"laboratoryId": 1,
+			"requesterName": "Requester 4",
+			"requesterEmail": "requester.4@email.com",
+			"description": "Description 4"
+		},
+		{
+			"id": 5,
+			"laboratoryId": 2,
+			"requesterName": "Requester 5",
+			"requesterEmail": "requester.5@email.com",
+			"description": "Description 5"
+		},
+		{
+			"id": 6,
+			"laboratoryId": 3,
+			"requesterName": "Requester 6",
+			"requesterEmail": "requester.6@email.com",
+			"description": "Description 6"
+		},
+		{
+			"id": 7,
+			"laboratoryId": 4,
+			"requesterName": "Requester 7",
+			"requesterEmail": "requester.7@email.com",
+			"description": "Description 7"
+		},
+		{
+			"id": 8,
+			"laboratoryId": 5,
+			"requesterName": "Requester 8",
+			"requesterEmail": "requester.8@email.com",
+			"description": "Description 8"
+		}
+	]
+}
