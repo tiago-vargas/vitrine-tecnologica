@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import "./Laboratories.css";
 import { Laboratory } from "../models";
+import Card from "./Card";
 
 function Laboratories() {
 	const [laboratories, setLaboratories] = useState<Laboratory[]>([]);
@@ -38,17 +39,6 @@ function Laboratories() {
 				</ul>
 			</main>
 		</div>
-	);
-}
-
-function Card(props: { title: string; subtitle: string; link: string }) {
-	return (
-		<NavLink to={props.link}>
-			<div className="Card">
-				<h3>{props.title}</h3>
-				<p>{props.subtitle}</p>
-			</div>
-		</NavLink>
 	);
 }
 

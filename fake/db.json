@@ -129,12 +129,12 @@
 		},
 		{
 			"id": 7,
-			"laboratoryId": 3,
+			"laboratoryId": 9,
 			"professorId": 6
 		},
 		{
 			"id": 8,
-			"laboratoryId": 2,
+			"laboratoryId": 9,
 			"professorId": 7
 		}
 	],

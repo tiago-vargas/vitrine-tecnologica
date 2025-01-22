@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
-import { Laboratory, Professor } from "../../models";
+import { Laboratory, Professor, LaboratoryCollaborator } from "../../models";
 import { useParams } from "react-router-dom";
+import Card from "../Card";
 
 function LaboratoryDetails(props: { laboratory?: Laboratory }) {
 	const { id } = useParams<{ id: string }>();
 	const [laboratory, setLaboratory] = useState<Laboratory | null>(null);
 	const [professor, setProfessor] = useState<Professor | null>(null);
+	const [collaborators, setCollaborators] = useState<Professor[]>([]);
 
 	useEffect(() => {
 		fetch(`http://localhost:5000/laboratory/${id}`)
@@ -22,6 +24,23 @@ function LaboratoryDetails(props: { laboratory?: Laboratory }) {
 				.catch(error => console.error('Error fetching professor:', error));
 		}
 	}, [laboratory?.responsibleProfessorId]);
+
+	useEffect(() => {
+		if (laboratory?.id) {
+			fetch(`http://localhost:5000/laboratoryCollaborator?laboratoryId=${laboratory.id}`)
+				.then(response => response.json())
+				.then(data => {
+					const collaboratorPromises = data.map((collaborator: LaboratoryCollaborator) =>
+						fetch(`http://localhost:5000/professor/${collaborator.professorId}`)
+							.then(response => response.json())
+					);
+					Promise.all(collaboratorPromises)
+						.then(professors => setCollaborators(professors))
+						.catch(error => console.error('Error fetching professors:', error));
+				})
+				.catch(error => console.error('Error fetching collaborators:', error));
+		}
+	}, [laboratory?.id]);
 
 	if (!laboratory) {
 		return (
@@ -51,19 +70,27 @@ function LaboratoryDetails(props: { laboratory?: Laboratory }) {
 
 				<h2>Coordenador</h2>
 				{professor ? (
-					<div>
-						<p>Nome: {professor.name}</p>
-						<p>Email: {professor.email}</p>
-						<p>Área de Expertise: {professor.areaOfExpertise}</p>
-					</div>
+					<Card
+						title={professor.name}
+						subtitle={`\n${professor.email}`}
+						link={"a"}
+					/>
+					// <p>Área de Expertise: {professor.areaOfExpertise}</p>
 				) : (
 					<p>Carregando detalhes do professor...</p>
 				)}
 
 				<h2>Colaboradores</h2>
 				<ul>
-					{laboratory?.offeredServices.map((service, index) => (
-						<li key={index}>{service}</li>
+					{collaborators.map((collaborator) => (
+						<li key={collaborator.id}>
+							<Card
+								title={collaborator.name}
+								subtitle={`\n${collaborator.email}`}
+								link={"a"}
+							/>
+							{/* <p>Área de Expertise: {collaborator.areaOfExpertise}</p> */}
+						</li>
 					))}
 				</ul>
 			</main>

@@ -32,5 +32,5 @@ export type {
 	Laboratory,
 	Professor,
 	LaboratoryCollaborator,
-	ServiceRequest
+	ServiceRequest,
 };
