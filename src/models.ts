@@ -1,7 +1,9 @@
 interface Laboratory {
 	id: number;
 	name: string;
+	fullName: string,
 	description: string;
+	offeredServices: string[];
 	responsibleProfessorId: number;
 }
 

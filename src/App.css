@@ -17,6 +17,7 @@
 @media (prefers-color-scheme: light) {
 	:root {
 		--primary-color: var(--dark-2);
+		--secondary-color: var(--bright-1-1);
 		--background-color: var(--bright-1);
 		--accent-color: var(--bright-2);
 	}
@@ -51,16 +52,15 @@ html {
 		margin-bottom: 0.44rem;
 	}
 
-	p {
+	ul, p {
 		margin-top: 0;
 		margin-bottom: 2.6rem;
 	}
 }
 
 .App {
-	text-align: center;
-
 	header {
+		text-align: center;
 		padding: 1rem;
 		background: linear-gradient(180deg, var(--accent-color), var(--background-color)); /* Gradient background */
 		min-height: 100vh;
@@ -99,7 +99,8 @@ html {
 	}
 }
 
-main {
+.App main {
+	text-align: justify;
 	max-width: 600px;
 	margin: 1rem auto;
 	background-color: var(--background-color);

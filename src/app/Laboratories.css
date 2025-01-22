@@ -1,6 +1,6 @@
 .Card {
 	/* TODO! Make this sync with the system */
-	background-color: var(--bright-1-1);
+	background-color: var(--secondary-color);
 	border-color: var(--primary-color);
 	color: var(--primary-color);
 	border-radius: 12px;

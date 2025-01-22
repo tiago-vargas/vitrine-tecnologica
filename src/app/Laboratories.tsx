@@ -29,7 +29,7 @@ function Laboratories() {
 							<li key={lab.id}>
 								<Card
 									title={lab.name}
-									description={lab.description}
+									subtitle={lab.fullName}
 									link={`/laboratorios/${lab.id}`}
 								/>
 							</li>
@@ -41,12 +41,12 @@ function Laboratories() {
 	);
 }
 
-function Card(props: { title: string; description: string; link: string }) {
+function Card(props: { title: string; subtitle: string; link: string }) {
 	return (
 		<NavLink to={props.link}>
 			<div className="Card">
 				<h3>{props.title}</h3>
-				<p>{props.description}</p>
+				<p>{props.subtitle}</p>
 			</div>
 		</NavLink>
 	);

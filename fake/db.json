@@ -3,25 +3,52 @@
 		{
 			"id": 6,
 			"name": "LabVICIA",
-			"description": "Laboratório de Visão Computacional e Inteligência Artificial",
+			"fullName": "Laboratório de Visão Computacional e Inteligência Artificial",
+			"description": "Description 6",
+			"offeredServices": [
+				"Serviço 1",
+				"Serviço 2",
+				"Serviço 3"
+			],
 			"responsibleProfessorId": 5
 		},
 		{
 			"id": 7,
 			"name": "LaTIM",
-			"description": "Laboratório de Tecnologia da Informação de Maracanaú",
+			"fullName": "Laboratório de Tecnologia da Informação de Maracanaú",
+			"description": "Description 7",
+			"offeredServices": [
+				"Serviço 1",
+				"Serviço 2",
+				"Serviço 3"
+			],
 			"responsibleProfessorId": 5
 		},
 		{
 			"id": 8,
 			"name": "LAESE",
+			"fullName": "Description 8",
 			"description": "Description 8",
+			"offeredServices": [
+				"Serviço 1",
+				"Serviço 2",
+				"Serviço 3"
+			],
 			"responsibleProfessorId": 5
 		},
 		{
 			"id": 9,
 			"name": "LASIC",
-			"description": "Laboratório de Sistemas e Inteligência Computacional",
+			"fullName": "Laboratório de Sistemas e Inteligência Computacional",
+			"description": "O LASIC (Laboratório de Software, Inovação e Ciência) tem como objetivo desenvolver soluções inovadoras, transformando ideias em soluções para problemas enfrentados por pessoas e empresas. O laboratório foca no desenvolvimento de projetos tecnológicos, com destaque para as áreas de Jogos Digitais, Softwares e Inteligência Artificial. Além disso, proporciona oportunidades de desenvolvimento técnico para alunos, professores e colaboradores por meio de projetos de iniciação científica, como PIBIC e PIBIT, TCCs, e parcerias com empresas.",
+			"offeredServices": [
+				"Desenvolvimento de projetos de software",
+				"Projetos de iniciação científica (PIBIC, PIBIT)",
+				"Trabalhos de Conclusão de Curso (TCC)",
+				"Parcerias com empresas",
+				"Inovações tecnológicas",
+				"Pesquisa e desenvolvimento em Jogos Digitais, Softwares e Inteligência Artificial"
+			],
 			"responsibleProfessorId": 5
 		}
 	],
@@ -52,19 +79,19 @@
 		},
 		{
 			"id": 5,
-			"name": "Professor 5",
+			"name": "Henrique Leitão",
 			"email": "professor.5@email.com",
 			"areaOfExpertise": "Area 5"
 		},
 		{
 			"id": 6,
-			"name": "Professor 6",
+			"name": "Alisson Linhares",
 			"email": "professor.6@email.com",
 			"areaOfExpertise": "Area 6"
 		},
 		{
 			"id": 7,
-			"name": "Professor 7",
+			"name": "Alysson Bonetti",
 			"email": "professor.7@email.com",
 			"areaOfExpertise": "Area 7"
 		}
