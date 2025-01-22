@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { NavLink } from "react-router-dom";
 import "./Laboratories.css";
 import { Laboratory } from "../models";
 
@@ -40,14 +41,14 @@ function Laboratories() {
 	);
 }
 
-function Card(props: { title: string; description: string; link: string; }) {
+function Card(props: { title: string; description: string; link: string }) {
 	return (
-		<a href={props.link}>
+		<NavLink to={props.link}>
 			<div className="Card">
 				<h3>{props.title}</h3>
 				<p>{props.description}</p>
 			</div>
-		</a>
+		</NavLink>
 	);
 }
 
