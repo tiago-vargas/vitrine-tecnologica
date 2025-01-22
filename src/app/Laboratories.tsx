@@ -1,18 +1,16 @@
+import { useEffect, useState } from "react";
 import "./Laboratories.css";
-
-interface CardProps {
-	title: string;
-	description: string;
-	link: string;
-}
+import { Laboratory } from "../models";
 
 function Laboratories() {
-	const laboratories = [
-		{ title: "LaTIM", description: "Laboratório de Tecnologias de Informação em Medicina", link: "/laboratorios/latim" },
-		{ title: "LabVICIA", description: "Laboratório de Visão Computacional e Imagem Aplicada", link: "/laboratorios/labvicia" },
-		{ title: "LASIC", description: "Laboratório de Sistemas Integráveis e Computação", link: "/laboratorios/lasic" },
-		{ title: "LAESE", description: "Laboratório de Engenharia de Software e Sistemas", link: "/laboratorios/laese" }
-	];
+	const [laboratories, setLaboratories] = useState<Laboratory[]>([]);
+
+	useEffect(() => {
+		fetch("http://localhost:5000/laboratory")
+			.then(response => response.json())
+			.then(data => setLaboratories(data))
+			.catch(error => console.error('Error fetching laboratories:', error));
+	});
 
 	return (
 		<div>
@@ -26,12 +24,12 @@ function Laboratories() {
 				<p>Selecione um laboratório para ver mais detalhes:</p>
 				<ul>
 					{
-						laboratories.map((lab, index) => (
-							<li key={index}>
+						laboratories.map((lab) => (
+							<li key={lab.id}>
 								<Card
-									title={lab.title}
+									title={lab.name}
 									description={lab.description}
-									link={lab.link}
+									link={`/laboratorios/${lab.id}`}
 								/>
 							</li>
 						))
@@ -42,7 +40,7 @@ function Laboratories() {
 	);
 }
 
-function Card(props: { title: string; description: string; link: string;}) {
+function Card(props: { title: string; description: string; link: string; }) {
 	return (
 		<a href={props.link}>
 			<div className="Card">
