@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
-import { Laboratory } from "../../models";
+import { Laboratory, Professor } from "../../models";
 import { useParams } from "react-router-dom";
 
 function LaboratoryDetails(props: { laboratory?: Laboratory }) {
 	const { id } = useParams<{ id: string }>();
 	const [laboratory, setLaboratory] = useState<Laboratory | null>(null);
+	const [professor, setProfessor] = useState<Professor | null>(null);
 
 	useEffect(() => {
 		fetch(`http://localhost:5000/laboratory/${id}`)
@@ -12,6 +13,15 @@ function LaboratoryDetails(props: { laboratory?: Laboratory }) {
 			.then(data => setLaboratory(data))
 			.catch(error => console.error('Error fetching laboratory:', error));
 	}, [id]);
+
+	useEffect(() => {
+		if (laboratory?.responsibleProfessorId) {
+			fetch(`http://localhost:5000/professor/${laboratory.responsibleProfessorId}`)
+				.then(response => response.json())
+				.then(data => setProfessor(data))
+				.catch(error => console.error('Error fetching professor:', error));
+		}
+	}, [laboratory?.responsibleProfessorId]);
 
 	if (!laboratory) {
 		return (
@@ -40,7 +50,15 @@ function LaboratoryDetails(props: { laboratory?: Laboratory }) {
 				</ul>
 
 				<h2>Coordenador</h2>
-				<p>Responsible Professor ID: {laboratory?.responsibleProfessorId}</p>
+				{professor ? (
+					<div>
+						<p>Nome: {professor.name}</p>
+						<p>Email: {professor.email}</p>
+						<p>Área de Expertise: {professor.areaOfExpertise}</p>
+					</div>
+				) : (
+					<p>Carregando detalhes do professor...</p>
+				)}
 
 				<h2>Colaboradores</h2>
 				<ul>
