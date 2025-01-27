@@ -58,7 +58,7 @@ function LaboratoryDetails(props: { laboratory?: Laboratory }) {
 			</header>
 
 			<main>
-				<h2>Resumo (O que se faz aqui)</h2>
+				<h2>O Que Se Faz Aqui</h2>
 				<p>{laboratory?.description}</p>
 
 				<h2>Serviços Ofertados</h2>

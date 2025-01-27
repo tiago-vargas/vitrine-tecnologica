@@ -71,6 +71,18 @@ html {
 		font-size: calc(10px + 2vmin);
 		color: var(--primary-color);
 	}
+
+	main {
+		text-align: justify;
+		max-width: 800px;
+		margin: 1rem auto;
+		padding: 1rem;
+		background-color: var(--background-color);
+
+		label {
+			font-weight: bold;
+		}
+	}
 }
 
 .Top-bar {
@@ -96,16 +108,5 @@ html {
 	.link {
 		text-decoration: none;
 		color: var(--primary-color);
-	}
-}
-
-.App main {
-	text-align: justify;
-	max-width: 600px;
-	margin: 1rem auto;
-	background-color: var(--background-color);
-
-	label {
-		font-weight: bold;
 	}
 }
