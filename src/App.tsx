@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Routes, useLocation } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import "./App.css";
 import Laboratories from "./app/Laboratories";
 import LaboratoryDetails from "./app/labs/LaboratoryDetails";
@@ -49,13 +49,20 @@ function NavBar(): JSX.Element {
 }
 
 function AdminNavBar(): JSX.Element {
+	const navigate = useNavigate();
+
+	const handleLogout = () => {
+		localStorage.removeItem("user");
+		navigate("/login");
+	};
+
 	return (
 		<div className="Top-bar">
 			<a className="logo link" href="/administrador">Vitrine Tecnológica</a>
 			<nav>
 				<a className="item link" href="/administrador">Início</a>
 				<a className="item link" href="/administrador/laboratorios">Laboratórios</a>
-				<a className="item link" href="/login">Sair</a>
+				<a className="item link" href="#" onClick={handleLogout}>Sair</a>
 			</nav>
 		</div>
 	);

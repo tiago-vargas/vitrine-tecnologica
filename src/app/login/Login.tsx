@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Login.css";
+import { User } from "../../models";
 
 function Login(): JSX.Element {
 	const [username, setUsername] = useState("");
@@ -12,8 +13,9 @@ function Login(): JSX.Element {
 		event.preventDefault();
 		try {
 			const response = await fetch(`http://localhost:5000/user?username=${username}`);
-			const data = await response.json();
+			const data: User[] = await response.json();
 			if (data.length > 0 && data[0].password === password) {
+				localStorage.setItem("user", JSON.stringify(data[0]));
 				navigate("/administrador");
 			} else {
 				setError("Usuário ou senha incorretos");
