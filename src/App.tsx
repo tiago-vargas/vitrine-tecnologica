@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.css";
 import Laboratories from "./app/Laboratories";
 import LaboratoryDetails from "./app/labs/LaboratoryDetails";
+import ProfessorDetails from "./app/professors/ProfessorDetails";
 
 function App(): JSX.Element {
 	return (
@@ -12,6 +13,7 @@ function App(): JSX.Element {
 					<Route index element={<Home />} />
 					<Route path="/laboratorios" element={<Laboratories />} />
 					<Route path="/laboratorios/:id" element={<LaboratoryDetails />} />
+					<Route path="/professores/:id" element={<ProfessorDetails />} />
 				</Routes>
 			</Router>
 		</div>
