@@ -57,9 +57,9 @@ function Home(): JSX.Element {
 					<p>Entre em contato conosco</p>
 
 					<label htmlFor="phone">Telefone</label>
-					<p id="phone">(85) 3307-3665</p>
+					<p id="phone">(85) 91234-5678</p>
 
-					<label htmlFor="email">Email</label>
+					<label htmlFor="email">E-Mail</label>
 					<p id="email">blablabla@exemplo.com.br</p>
 
 					<label htmlFor="address">Endereço</label>

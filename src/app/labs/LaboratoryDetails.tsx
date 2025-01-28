@@ -121,19 +121,21 @@ function LaboratoryDetails(): JSX.Element {
 				}
 
 				<h2>Coordenador</h2>
-				{professor ? (
-					<ProfessorCard professor={professor} />
-				) : (
-					<p>Carregando detalhes do professor...</p>
-				)}
+				{
+					professor
+						? <ProfessorCard professor={professor} />
+						: <p>Carregando...</p>
+				}
 
 				<h2>Colaboradores</h2>
 				<ul>
-					{collaborators.map((collaborator) => (
-						<li key={collaborator.id}>
-							<ProfessorCard professor={collaborator} />
-						</li>
-					))}
+					{
+						collaborators.map((collaborator) => (
+							<li key={collaborator.id}>
+								<ProfessorCard professor={collaborator} />
+							</li>
+						))
+					}
 				</ul>
 			</main>
 		</div>
