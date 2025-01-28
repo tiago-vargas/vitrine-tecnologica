@@ -85,7 +85,15 @@ function LaboratoryDetails(): JSX.Element {
 					isPresentingForm
 						? <div className="Form">
 							<h2>Requisitar Serviço</h2>
+							<p>Preencha o formulário com os seus dados e com os detalhes do serviço</p>
+
 							<form onSubmit={handleSubmitRequest} className="Form">
+								<label htmlFor="requester-name">Nome</label>
+								<input id="requester-name" type="text" />
+
+								<label htmlFor="requester-email">E-Mail</label>
+								<input type="email" id="requester-email" />
+
 								<label htmlFor="textarea">Detalhes da requisição</label>
 								<textarea
 									id="textarea"
