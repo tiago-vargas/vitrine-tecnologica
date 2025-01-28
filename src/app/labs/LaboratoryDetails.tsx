@@ -98,7 +98,6 @@ function LaboratoryDetails(): JSX.Element {
 								<textarea
 									id="textarea"
 									value={requestDetails}
-									placeholder="aaaaaa"
 									onChange={(e) => setRequestDetails(e.target.value)}
 								/>
 								<div className="button-row">
