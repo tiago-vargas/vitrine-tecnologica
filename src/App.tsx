@@ -27,8 +27,8 @@ function NavBar(): JSX.Element {
 			<nav>
 				<a className="item link" href="/">Início</a>
 				<a className="item link" href="/laboratorios">Laboratórios</a>
-				<a className="item link" href="#sobre">Sobre Nós</a>
-				<a className="item link" href="#contato">Contato</a>
+				<a className="item link" href="/#sobre">Sobre Nós</a>
+				<a className="item link" href="/#contato">Contato</a>
 			</nav>
 		</div>
 	);
