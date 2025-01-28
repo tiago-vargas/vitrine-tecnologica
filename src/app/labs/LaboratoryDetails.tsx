@@ -123,12 +123,7 @@ function LaboratoryDetails(): JSX.Element {
 
 				<h2>Coordenador</h2>
 				{professor ? (
-					<ProfessorCard
-						id={professor.id}
-						name={professor.name}
-						email={professor.email}
-						areaOfExpertise={professor.areaOfExpertise}
-					/>
+					<ProfessorCard professor={professor} />
 				) : (
 					<p>Carregando detalhes do professor...</p>
 				)}
@@ -137,12 +132,7 @@ function LaboratoryDetails(): JSX.Element {
 				<ul>
 					{collaborators.map((collaborator) => (
 						<li key={collaborator.id}>
-							<ProfessorCard
-								id={collaborator.id}
-								name={collaborator.name}
-								email={collaborator.email}
-								areaOfExpertise={collaborator.areaOfExpertise}
-							/>
+							<ProfessorCard professor={collaborator} />
 						</li>
 					))}
 				</ul>
@@ -151,12 +141,12 @@ function LaboratoryDetails(): JSX.Element {
 	);
 }
 
-function ProfessorCard(props: { id: Number, name: String, email: String, areaOfExpertise: String }): JSX.Element {
+function ProfessorCard(props: { professor: Professor }): JSX.Element {
 	return (
-		<NavLink to={`/professores/${props.id}`}>
+		<NavLink to={`/professores/${props.professor.id}`}>
 			<div className="ProfessorCard Card">
-				<h3>{props.name} <span className="email">{props.email}</span></h3>
-				<p>{props.areaOfExpertise}</p>
+				<h3>{props.professor.name} <span className="email">{props.professor.email}</span></h3>
+				<p>{props.professor.areaOfExpertise}</p>
 			</div>
 		</NavLink>
 	);
