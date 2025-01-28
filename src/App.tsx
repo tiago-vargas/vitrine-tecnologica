@@ -67,7 +67,7 @@ function AdminNavBar(): JSX.Element {
 				<a className="item link" href="/administrador">Início</a>
 				<a className="item link" href="/administrador/professores">Professores</a>
 				<a className="item link" href="/administrador/laboratorios">Laboratórios</a>
-				<a className="item link" href="#" onClick={handleLogout}>Sair</a>
+				<a className="item link" href="/login" onClick={handleLogout}>Sair</a>
 			</nav>
 		</div>
 	);
