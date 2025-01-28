@@ -4,6 +4,7 @@ import Laboratories from "./app/Laboratories";
 import LaboratoryDetails from "./app/labs/LaboratoryDetails";
 import ProfessorDetails from "./app/professors/ProfessorDetails";
 import Login from "./app/login/Login";
+import UserHome from "./app/user/UserHome";
 
 function App(): JSX.Element {
 	return (
@@ -16,6 +17,7 @@ function App(): JSX.Element {
 					<Route path="/laboratorios/:id" element={<LaboratoryDetails />} />
 					<Route path="/professores/:id" element={<ProfessorDetails />} />
 					<Route path="/login" element={<Login />} />
+					<Route path="/administrador" element={<UserHome />} />
 				</Routes>
 			</Router>
 		</div>

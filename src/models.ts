@@ -28,9 +28,16 @@ interface ServiceRequest {
 	description: string;
 }
 
+interface User {
+	id: number;
+	username: string;
+	password: string;
+}
+
 export type {
 	Laboratory,
 	Professor,
 	LaboratoryCollaborator,
 	ServiceRequest,
+	User,
 };

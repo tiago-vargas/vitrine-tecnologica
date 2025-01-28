@@ -195,5 +195,12 @@
 			"requesterEmail": "requester.8@email.com",
 			"description": "Description 8"
 		}
+	],
+	"user": [
+		{
+			"id": 1,
+			"username": "admin",
+			"password": "admin"
+		}
 	]
 }
