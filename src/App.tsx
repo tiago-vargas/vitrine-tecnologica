@@ -62,7 +62,7 @@ function AdminNavBar(): JSX.Element {
 
 	return (
 		<div className="Top-bar">
-			<a className="logo link" href="/administrador">Vitrine Tecnológica</a>
+			<a className="logo link" href="/administrador">Administrador</a>
 			<nav>
 				<a className="item link" href="/administrador">Início</a>
 				<a className="item link" href="/administrador/professores">Professores</a>
