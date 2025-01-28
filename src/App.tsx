@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, useLocation } from "react-router-dom";
 import "./App.css";
 import Laboratories from "./app/Laboratories";
 import LaboratoryDetails from "./app/labs/LaboratoryDetails";
@@ -8,18 +8,27 @@ import UserHome from "./app/user/UserHome";
 
 function App(): JSX.Element {
 	return (
+		<Router>
+			<Main />
+		</Router>
+	);
+}
+
+function Main(): JSX.Element {
+	const location = useLocation();
+	const isAdminRoute = location.pathname.startsWith("/administrador");
+
+	return (
 		<div className="App">
-			<NavBar />
-			<Router>
-				<Routes>
-					<Route index element={<Home />} />
-					<Route path="/laboratorios" element={<Laboratories />} />
-					<Route path="/laboratorios/:id" element={<LaboratoryDetails />} />
-					<Route path="/professores/:id" element={<ProfessorDetails />} />
-					<Route path="/login" element={<Login />} />
-					<Route path="/administrador" element={<UserHome />} />
-				</Routes>
-			</Router>
+			{isAdminRoute ? <AdminNavBar /> : <NavBar />}
+			<Routes>
+				<Route index element={<Home />} />
+				<Route path="/laboratorios" element={<Laboratories />} />
+				<Route path="/laboratorios/:id" element={<LaboratoryDetails />} />
+				<Route path="/professores/:id" element={<ProfessorDetails />} />
+				<Route path="/login" element={<Login />} />
+				<Route path="/administrador" element={<UserHome />} />
+			</Routes>
 		</div>
 	);
 }
@@ -34,6 +43,19 @@ function NavBar(): JSX.Element {
 				<a className="item link" href="/#sobre">Sobre Nós</a>
 				<a className="item link" href="/#contato">Contato</a>
 				<a className="item link" href="/login">Administrador</a>
+			</nav>
+		</div>
+	);
+}
+
+function AdminNavBar(): JSX.Element {
+	return (
+		<div className="Top-bar">
+			<a className="logo link" href="/administrador">Vitrine Tecnológica</a>
+			<nav>
+				<a className="item link" href="/administrador">Início</a>
+				<a className="item link" href="/administrador/laboratorios">Laboratórios</a>
+				<a className="item link" href="/login">Sair</a>
 			</nav>
 		</div>
 	);
