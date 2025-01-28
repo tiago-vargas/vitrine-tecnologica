@@ -117,12 +117,11 @@ function LaboratoryDetails(props: { laboratory?: Laboratory }) {
 
 				<h2>Coordenador</h2>
 				{professor ? (
-					<Card
-						title={professor.name}
-						subtitle={professor.email}
-						link={"a"}
+					<ProfessorCard
+						name={professor.name}
+						email={professor.email}
+						areaOfExpertise={professor.areaOfExpertise}
 					/>
-					// <p>Área de Atuação: {professor.areaOfExpertise}</p>
 				) : (
 					<p>Carregando detalhes do professor...</p>
 				)}
@@ -131,16 +130,26 @@ function LaboratoryDetails(props: { laboratory?: Laboratory }) {
 				<ul>
 					{collaborators.map((collaborator) => (
 						<li key={collaborator.id}>
-							<Card
-								title={collaborator.name}
-								subtitle={collaborator.email}
-								link={"a"}
+							<ProfessorCard
+								name={collaborator.name}
+								email={collaborator.email}
+								areaOfExpertise={collaborator.areaOfExpertise}
 							/>
-							{/* <p>Área de Atuação: {collaborator.areaOfExpertise}</p> */}
 						</li>
 					))}
 				</ul>
 			</main>
 		</div>
 	);
-} export default LaboratoryDetails;
+}
+
+function ProfessorCard(props: { name: String, email: String, areaOfExpertise: String }) {
+	return (
+		<div className="ProfessorCard Card">
+			<h3>{props.name} <span className="email">{props.email}</span></h3>
+			<p>{props.areaOfExpertise}</p>
+		</div>
+	);
+}
+
+export default LaboratoryDetails;

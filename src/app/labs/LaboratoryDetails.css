@@ -61,3 +61,11 @@ button:hover {
 		gap: 10px;
 	}
 }
+
+.ProfessorCard .email {
+	font-weight: normal;
+	font-style: italic;
+	font-size: medium;
+	margin-left: 1rem;
+	color: var(--text-muted-color);
+}
