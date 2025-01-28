@@ -2,12 +2,28 @@ import { useEffect, useState } from "react";
 import { Laboratory, Professor, LaboratoryCollaborator } from "../../models";
 import { useParams } from "react-router-dom";
 import Card from "../Card";
+import './LaboratoryDetails.css';
+// import Modal from "../Modal"; // Assuming you have a Modal component
 
 function LaboratoryDetails(props: { laboratory?: Laboratory }) {
 	const { id } = useParams<{ id: string }>();
 	const [laboratory, setLaboratory] = useState<Laboratory | null>(null);
 	const [professor, setProfessor] = useState<Professor | null>(null);
 	const [collaborators, setCollaborators] = useState<Professor[]>([]);
+	const [isPresentingForm, setIsPresentingForm] = useState(false);
+	const [requestDetails, setRequestDetails] = useState("");
+
+	const handleRequestService = () => {
+		setIsPresentingForm(true);
+	};
+
+	const handleSubmitRequest = () => {
+		setIsPresentingForm(false);
+	};
+
+	const handleCancelRequest = () => {
+		setIsPresentingForm(false);
+	};
 
 	useEffect(() => {
 		fetch(`http://localhost:5000/laboratory/${id}`)
@@ -67,15 +83,46 @@ function LaboratoryDetails(props: { laboratory?: Laboratory }) {
 						<li key={index}>{service}</li>
 					))}
 				</ul>
+				{
+					isPresentingForm
+						? <div className="Form">
+							<h2>Requisitar Serviço</h2>
+							<form onSubmit={handleSubmitRequest} className="Form">
+								<label htmlFor="textarea">Detalhes da requisição</label>
+								<textarea
+									id="textarea"
+									value={requestDetails}
+									placeholder="aaaaaa"
+									onChange={(e) => setRequestDetails(e.target.value)}
+								/>
+								<div className="button-row">
+									<button
+										type="button"
+										className="destructive-action"
+										onClick={handleCancelRequest}
+									>
+										Cancelar
+									</button>
+									<button
+										type="submit"
+										className="suggested-action"
+									>
+										Enviar
+									</button>
+								</div>
+							</form>
+						</div>
+						: <button onClick={handleRequestService}>Requesitar Serviço</button>
+				}
 
 				<h2>Coordenador</h2>
 				{professor ? (
 					<Card
 						title={professor.name}
-						subtitle={`\n${professor.email}`}
+						subtitle={professor.email}
 						link={"a"}
 					/>
-					// <p>Área de Expertise: {professor.areaOfExpertise}</p>
+					// <p>Área de Atuação: {professor.areaOfExpertise}</p>
 				) : (
 					<p>Carregando detalhes do professor...</p>
 				)}
@@ -86,16 +133,14 @@ function LaboratoryDetails(props: { laboratory?: Laboratory }) {
 						<li key={collaborator.id}>
 							<Card
 								title={collaborator.name}
-								subtitle={`\n${collaborator.email}`}
+								subtitle={collaborator.email}
 								link={"a"}
 							/>
-							{/* <p>Área de Expertise: {collaborator.areaOfExpertise}</p> */}
+							{/* <p>Área de Atuação: {collaborator.areaOfExpertise}</p> */}
 						</li>
 					))}
 				</ul>
 			</main>
 		</div>
 	);
-}
-
-export default LaboratoryDetails;
+} export default LaboratoryDetails;

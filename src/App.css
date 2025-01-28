@@ -20,6 +20,7 @@
 		--secondary-color: var(--bright-1-1);
 		--background-color: var(--bright-1);
 		--accent-color: var(--bright-2);
+		--suggested-action: var(var(--bright-3));
 	}
 }
 

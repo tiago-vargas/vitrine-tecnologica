@@ -1,19 +1,63 @@
-ul li::before {
+/* ul li::before {
 	content: "- ";
-}
+} */
 
 button {
-	background-color: var(--secondary-color);
-	border-color: var(--primary-color);
-	color: var(--primary-color);
+	background-color: var(--accent-color);
+	border-color: var(--accent-color);
+	color: var(--background-color);
 	border-radius: 12px;
-	border-left: 12px solid var(--accent-color);
 	padding: 1rem;
-	margin: 1rem auto;
 	transition: background-color 0.25s ease;
-	text-align: left;
+
+	.suggested-action {
+		background-color: var(--suggested-action);
+		color: white;
+	}
+
+	.destructive-action {
+		background-color: var(--destructive-color);
+		color: white;
+	}
 }
 
 button:hover {
 	background-color: var(--bright-1-3);
+}
+
+.Form {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+
+	label {
+		margin-bottom: 5px;
+	}
+
+	textarea {
+		/* resize: vertical; */
+		min-height: 120px;
+		border: 2px solid var(--accent-color);
+		border-radius: 8px;
+		padding: 8px;
+		font-family: inherit;
+		color: var(--text-color);
+		/* background-color: var(--background-color); */
+		transition: border-color 0.25s ease;
+	}
+
+	textarea:focus {
+		border-color: var(--bright-1-3);
+		outline: none;
+	}
+
+	button {
+		align-self: flex-start;
+	}
+
+	.button-row {
+		align-self: flex-end;
+		display: flex;
+		gap: 10px;
+	}
 }
