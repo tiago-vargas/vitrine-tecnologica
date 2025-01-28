@@ -5,6 +5,8 @@ import LaboratoryDetails from "./app/labs/LaboratoryDetails";
 import ProfessorDetails from "./app/professors/ProfessorDetails";
 import Login from "./app/login/Login";
 import UserHome from "./app/user/UserHome";
+import AdminProfessors from "./app/user/AdminProfessors";
+import AdminLaboratories from "./app/user/AdminLaboratories";
 
 function App(): JSX.Element {
 	return (
@@ -28,6 +30,8 @@ function Main(): JSX.Element {
 				<Route path="/professores/:id" element={<ProfessorDetails />} />
 				<Route path="/login" element={<Login />} />
 				<Route path="/administrador" element={<UserHome />} />
+				<Route path="/administrador/professores" element={<AdminProfessors />} />
+				<Route path="/administrador/laboratorios" element={<AdminLaboratories />} />
 			</Routes>
 		</div>
 	);
@@ -61,6 +65,7 @@ function AdminNavBar(): JSX.Element {
 			<a className="logo link" href="/administrador">Vitrine Tecnológica</a>
 			<nav>
 				<a className="item link" href="/administrador">Início</a>
+				<a className="item link" href="/administrador/professores">Professores</a>
 				<a className="item link" href="/administrador/laboratorios">Laboratórios</a>
 				<a className="item link" href="#" onClick={handleLogout}>Sair</a>
 			</nav>
