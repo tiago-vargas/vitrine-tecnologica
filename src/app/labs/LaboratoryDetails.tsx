@@ -5,7 +5,7 @@ import Card from "../Card";
 import './LaboratoryDetails.css';
 // import Modal from "../Modal"; // Assuming you have a Modal component
 
-function LaboratoryDetails(props: { laboratory?: Laboratory }): JSX.Element {
+function LaboratoryDetails(): JSX.Element {
 	const { id } = useParams<{ id: string }>();
 	const [laboratory, setLaboratory] = useState<Laboratory | null>(null);
 	const [professor, setProfessor] = useState<Professor | null>(null);
