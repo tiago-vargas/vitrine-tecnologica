@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 
-function Card(props: { title: string; subtitle: string; link: string }) {
+function Card(props: { title: string; subtitle: string; link: string }): JSX.Element {
 	return (
 		<NavLink to={props.link}>
 			<div className="Card">

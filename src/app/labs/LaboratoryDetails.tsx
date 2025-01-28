@@ -5,7 +5,7 @@ import Card from "../Card";
 import './LaboratoryDetails.css';
 // import Modal from "../Modal"; // Assuming you have a Modal component
 
-function LaboratoryDetails(props: { laboratory?: Laboratory }) {
+function LaboratoryDetails(props: { laboratory?: Laboratory }): JSX.Element {
 	const { id } = useParams<{ id: string }>();
 	const [laboratory, setLaboratory] = useState<Laboratory | null>(null);
 	const [professor, setProfessor] = useState<Professor | null>(null);
@@ -143,7 +143,7 @@ function LaboratoryDetails(props: { laboratory?: Laboratory }) {
 	);
 }
 
-function ProfessorCard(props: { name: String, email: String, areaOfExpertise: String }) {
+function ProfessorCard(props: { name: String, email: String, areaOfExpertise: String }): JSX.Element {
 	return (
 		<div className="ProfessorCard Card">
 			<h3>{props.name} <span className="email">{props.email}</span></h3>

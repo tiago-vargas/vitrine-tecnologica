@@ -4,7 +4,7 @@ import "./Laboratories.css";
 import { Laboratory } from "../models";
 import Card from "./Card";
 
-function Laboratories() {
+function Laboratories(): JSX.Element {
 	const [laboratories, setLaboratories] = useState<Laboratory[]>([]);
 
 	useEffect(() => {

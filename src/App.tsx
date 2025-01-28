@@ -3,7 +3,7 @@ import "./App.css";
 import Laboratories from "./app/Laboratories";
 import LaboratoryDetails from "./app/labs/LaboratoryDetails";
 
-function App() {
+function App(): JSX.Element {
 	return (
 		<div className="App">
 			<NavBar />
@@ -18,7 +18,7 @@ function App() {
 	);
 }
 
-function NavBar() {
+function NavBar(): JSX.Element {
 	return (
 		<div className="Top-bar">
 			<a className="logo link" href="/">Vitrine Tecnológica</a>
@@ -32,7 +32,7 @@ function NavBar() {
 	);
 }
 
-function Home() {
+function Home(): JSX.Element {
 	return (
 		<div>
 			<header>
