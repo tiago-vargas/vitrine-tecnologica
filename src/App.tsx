@@ -3,6 +3,7 @@ import "./App.css";
 import Laboratories from "./app/Laboratories";
 import LaboratoryDetails from "./app/labs/LaboratoryDetails";
 import ProfessorDetails from "./app/professors/ProfessorDetails";
+import Login from "./app/login/Login";
 
 function App(): JSX.Element {
 	return (
@@ -14,6 +15,7 @@ function App(): JSX.Element {
 					<Route path="/laboratorios" element={<Laboratories />} />
 					<Route path="/laboratorios/:id" element={<LaboratoryDetails />} />
 					<Route path="/professores/:id" element={<ProfessorDetails />} />
+					<Route path="/login" element={<Login />} />
 				</Routes>
 			</Router>
 		</div>
@@ -29,6 +31,7 @@ function NavBar(): JSX.Element {
 				<a className="item link" href="/laboratorios">Laboratórios</a>
 				<a className="item link" href="/#sobre">Sobre Nós</a>
 				<a className="item link" href="/#contato">Contato</a>
+				<a className="item link" href="/login">Administrador</a>
 			</nav>
 		</div>
 	);
