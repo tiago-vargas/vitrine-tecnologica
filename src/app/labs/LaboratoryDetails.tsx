@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react";
 import { Laboratory, Professor, LaboratoryCollaborator } from "../../models";
 import { useParams } from "react-router-dom";
-import Card from "../Card";
 import './LaboratoryDetails.css';
-// import Modal from "../Modal"; // Assuming you have a Modal component
 
 function LaboratoryDetails(): JSX.Element {
 	const { id } = useParams<{ id: string }>();
