@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Professor } from "../../models";
 import ProfessorCard from "../ProfessorCard";
 // import "./AdminProfessors.css";
 
 function AdminProfessors(): JSX.Element {
 	const [professors, setProfessors] = useState<Professor[]>([]);
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		fetch("http://localhost:5000/professor")
@@ -12,6 +14,10 @@ function AdminProfessors(): JSX.Element {
 			.then(data => setProfessors(data))
 			.catch(error => console.error('Error fetching professors:', error));
 	}, []);
+
+	const handleAddProfessor = () => {
+		navigate("/administrador/professores/cadastrar");
+	};
 
 	return (
 		<div>
@@ -23,6 +29,7 @@ function AdminProfessors(): JSX.Element {
 			<main>
 				<h2>Professores Cadastrados</h2>
 				<p>Selecione um professor para editar seus detalhes</p>
+				<button onClick={handleAddProfessor} className="suggested-action">Cadastrar Novo Professor</button>
 				<ul>
 					{
 						professors.map((prof) => (
