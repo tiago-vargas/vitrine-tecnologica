@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Laboratory, Professor, LaboratoryCollaborator } from "../../models";
 import { NavLink, useParams } from "react-router-dom";
 import './LaboratoryDetails.css';
+import ProfessorCard from "../ProfessorCard";
 
 function LaboratoryDetails(): JSX.Element {
 	const { id } = useParams<{ id: string }>();
@@ -123,7 +124,7 @@ function LaboratoryDetails(): JSX.Element {
 				<h2>Coordenador</h2>
 				{
 					professor
-						? <ProfessorCard professor={professor} />
+						? <ProfessorCard professor={professor} linkPrefix="/professores" />
 						: <p>Carregando...</p>
 				}
 
@@ -132,24 +133,13 @@ function LaboratoryDetails(): JSX.Element {
 					{
 						collaborators.map((collaborator) => (
 							<li key={collaborator.id}>
-								<ProfessorCard professor={collaborator} />
+								<ProfessorCard professor={collaborator} linkPrefix="/professores" />
 							</li>
 						))
 					}
 				</ul>
 			</main>
 		</div>
-	);
-}
-
-function ProfessorCard(props: { professor: Professor }): JSX.Element {
-	return (
-		<NavLink to={`/professores/${props.professor.id}`}>
-			<div className="ProfessorCard Card">
-				<h3>{props.professor.name} <span className="email">{props.professor.email}</span></h3>
-				<p>{props.professor.areaOfExpertise}</p>
-			</div>
-		</NavLink>
 	);
 }
 

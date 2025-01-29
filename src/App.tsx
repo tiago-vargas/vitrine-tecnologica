@@ -9,6 +9,7 @@ import AdminProfessors from "./app/user/AdminProfessors";
 import AdminLaboratories from "./app/user/AdminLaboratories";
 import AdminAddLaboratory from "./app/user/AdminAddLaboratory";
 import AdminEditLaboratory from "./app/user/AdminEditLaboratory";
+import AdminEditProfessor from "./app/user/AdminEditProfessor";
 
 function App(): JSX.Element {
 	return (
@@ -36,6 +37,7 @@ function Main(): JSX.Element {
 				<Route path="/administrador/laboratorios" element={<AdminLaboratories />} />
 				<Route path="/administrador/laboratorios/cadastrar" element={<AdminAddLaboratory />} />
 				<Route path="/administrador/laboratorios/:id" element={<AdminEditLaboratory />} />
+				<Route path="/administrador/professores/:id" element={<AdminEditProfessor />} />
 			</Routes>
 		</div>
 	);
