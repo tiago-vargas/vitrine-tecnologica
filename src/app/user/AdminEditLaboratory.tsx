@@ -44,6 +44,22 @@ function AdminEditLaboratory(): JSX.Element {
 		}
 	};
 
+	const handleDelete = async () => {
+		try {
+			const response = await fetch(`http://localhost:5000/laboratory/${id}`, {
+				method: "DELETE",
+			});
+			if (response.ok) {
+				navigate("/administrador/laboratorios");
+			} else {
+				setError("Erro ao deletar laboratório");
+			}
+		} catch (error) {
+			console.error("Erro:", error);
+			setError("Um erro ocorreu. Tente novamente.");
+		}
+	};
+
 	if (!formData) {
 		return <div>Carregando...</div>;
 	}
@@ -105,6 +121,7 @@ function AdminEditLaboratory(): JSX.Element {
 					/>
 					<button type="submit">Salvar</button>
 				</form>
+				<button onClick={handleDelete} className="destructive-action">Deletar</button>
 				{error && <p className="error">{error}</p>}
 			</main>
 		</div>
