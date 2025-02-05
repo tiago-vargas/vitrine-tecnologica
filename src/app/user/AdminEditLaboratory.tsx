@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import { Laboratory } from "../../models";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
+import { Laboratory, ServiceRequest } from "../../models";
 // import "./AdminEditLaboratory.css";
 
 function AdminEditLaboratory(): JSX.Element {
 	const { id } = useParams<{ id: string }>();
 	const [formData, setFormData] = useState<Laboratory | null>(null);
 	const [error, setError] = useState("");
+	const [serviceRequests, setServiceRequests] = useState<ServiceRequest[]>([]);
 	const navigate = useNavigate();
 
 	useEffect(() => {
@@ -15,6 +16,15 @@ function AdminEditLaboratory(): JSX.Element {
 			.then(data => setFormData(data))
 			.catch(error => console.error('Error fetching laboratory:', error));
 	}, [id]);
+
+	useEffect(() => {
+		if (formData?.id) {
+			fetch(`http://localhost:5000/serviceRequest?laboratoryId=${formData.id}`)
+				.then(response => response.json())
+				.then(data => setServiceRequests(data))
+				.catch(error => console.error('Error fetching service requests:', error));
+		}
+	}, [formData?.id]);
 
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
 		const { name, value } = e.target;
@@ -66,7 +76,7 @@ function AdminEditLaboratory(): JSX.Element {
 
 	return (
 		<div>
-			<header className="Register">
+			<header>
 				<h1>Editar Laboratório</h1>
 			</header>
 			<main className="Register">
@@ -121,10 +131,35 @@ function AdminEditLaboratory(): JSX.Element {
 					/>
 					<button type="submit">Salvar</button>
 				</form>
+
+				<h2>Requisições de Serviço</h2>
+				<ul>
+					{
+						serviceRequests.map(request => (
+							<li key={request.id}>
+								<RequestCard request={request} />
+							</li>
+						))
+					}
+				</ul>
 				<button onClick={handleDelete} className="destructive-action">Deletar</button>
 				{error && <p className="error">{error}</p>}
 			</main>
-		</div>
+		</div >
+	);
+}
+
+function RequestCard(props: { request: ServiceRequest }) {
+	return (
+		<NavLink to="">
+			<div className="Card">
+				<h3>{props.request.requesterCompany}</h3>
+				<p><strong>Nome:</strong> {props.request.requesterName}</p>
+				<p><strong>E-mail:</strong> {props.request.requesterEmail}</p>
+				<p><strong>Telefone:</strong> {props.request.requesterPhoneNumber}</p>
+				<p><strong>Descrição:</strong> {props.request.description}</p>
+			</div>
+		</NavLink>
 	);
 }
 

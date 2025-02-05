@@ -60,7 +60,7 @@ function AdminAddLaboratory(): JSX.Element {
 
 	return (
 		<div>
-			<header className="Register">
+			<header>
 				<h1>Cadastrar Laboratório</h1>
 			</header>
 			<main className="Register">
