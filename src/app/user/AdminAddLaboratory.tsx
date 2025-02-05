@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { Professor } from "../../models";
 import "./AdminAddLaboratory.css";
 
 function AdminAddLaboratory(): JSX.Element {
@@ -10,8 +11,17 @@ function AdminAddLaboratory(): JSX.Element {
 		offeredServices: [],
 		responsibleProfessorId: 0,
 	});
+	const [professors, setProfessors] = useState<Professor[]>([]);
+	const [searchTerm, setSearchTerm] = useState("");
 	const [error, setError] = useState("");
 	const navigate = useNavigate();
+
+	useEffect(() => {
+		fetch("http://localhost:5000/professor")
+			.then(response => response.json())
+			.then(data => setProfessors(data))
+			.catch(error => console.error('Error fetching professors:', error));
+	}, []);
 
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
 		const { name, value } = e.target;
@@ -38,6 +48,15 @@ function AdminAddLaboratory(): JSX.Element {
 			setError("Um erro ocorreu. Tente novamente.");
 		}
 	};
+
+	const handleProfessorSelect = (professorId: number) => {
+		setFormData({ ...formData, responsibleProfessorId: professorId });
+		setSearchTerm("");
+	};
+
+	const filteredProfessors = professors.filter(prof =>
+		prof.name.toLowerCase().includes(searchTerm.toLowerCase())
+	);
 
 	return (
 		<div>
@@ -88,12 +107,18 @@ function AdminAddLaboratory(): JSX.Element {
 
 					<label htmlFor="lab-responsible">Coordenador</label>
 					<input
-						type="number"
-						name="responsibleProfessorId"
-						placeholder="ID do Professor Responsável"
-						value={formData.responsibleProfessorId}
-						onChange={handleChange}
+						type="text"
+						placeholder="Buscar professor pelo nome"
+						value={searchTerm}
+						onChange={(e) => setSearchTerm(e.target.value)}
 					/>
+					<ul>
+						{filteredProfessors.map(prof => (
+							<li key={prof.id} onClick={() => handleProfessorSelect(prof.id)}>
+								{prof.name}
+							</li>
+						))}
+					</ul>
 					<button type="submit">Cadastrar</button>
 				</form>
 				{error && <p className="error">{error}</p>}
