@@ -51,8 +51,8 @@ function NavBar(): JSX.Element {
 			<a className="logo link" href="/">Vitrine Tecnológica</a>
 			<nav>
 				<a className="item link" href="/">Início</a>
-				<a className="item link" href="/laboratorios">Laboratórios</a>
 				<a className="item link" href="/#sobre">Sobre Nós</a>
+				<a className="item link" href="/laboratorios">Laboratórios</a>
 				<a className="item link" href="/#contato">Contato</a>
 				<a className="item link" href="/login">Administrador</a>
 			</nav>
@@ -90,14 +90,14 @@ function Home(): JSX.Element {
 			</header>
 
 			<main>
+				<section id="sobre-nos">
+					<h2>Sobre Nós</h2>
+					<p>Conheça mais sobre a Vitrine Tecnológica</p>
+				</section>
 				<section id="laboratorios">
 					<h2>Laboratórios</h2>
 					<p>Conheça nossos laboratórios disponíveis</p>
 					<a href="/laboratorios">Conferir</a>
-				</section>
-				<section id="sobre-nos">
-					<h2>Sobre Nós</h2>
-					<p>Conheça mais sobre a Vitrine Tecnológica</p>
 				</section>
 				<section id="contato">
 					<h2>Contato</h2>
