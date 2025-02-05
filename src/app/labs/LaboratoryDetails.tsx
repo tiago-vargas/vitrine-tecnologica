@@ -20,8 +20,37 @@ function LaboratoryDetails(): JSX.Element {
 		setIsPresentingForm(true);
 	};
 
-	const handleSubmitRequest = () => {
-		setIsPresentingForm(false);
+	const handleSubmitRequest = (e: React.FormEvent) => {
+		e.preventDefault();
+		const currentDate = new Date().toISOString();
+		const requestData = {
+			laboratoryId: laboratory?.id,
+			requesterName,
+			requesterEmail,
+			requesterCompany,
+			requesterPhoneNumber,
+			description: requestDetails,
+			requestDate: currentDate,
+		};
+
+		fetch('http://localhost:5000/serviceRequest', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(requestData),
+		})
+			.then(response => response.json())
+			.then(() => {
+				setIsPresentingForm(false);
+				// Optionally clear the form fields
+				setRequesterName("");
+				setRequesterEmail("");
+				setRequesterCompany("");
+				setRequesterPhoneNumber("");
+				setRequestDetails("");
+			})
+			.catch(error => console.error('Error submitting request:', error));
 	};
 
 	const handleCancelRequest = () => {
