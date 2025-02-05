@@ -4,7 +4,7 @@ import Laboratories from "./app/Laboratories";
 import LaboratoryDetails from "./app/labs/LaboratoryDetails";
 import ProfessorDetails from "./app/professors/ProfessorDetails";
 import Login from "./app/login/Login";
-import UserHome from "./app/user/UserHome";
+import AdminHome from "./app/user/AdminHome";
 import AdminProfessors from "./app/user/AdminProfessors";
 import AdminLaboratories from "./app/user/AdminLaboratories";
 import AdminAddLaboratory from "./app/user/AdminAddLaboratory";
@@ -33,7 +33,7 @@ function Main(): JSX.Element {
 				<Route path="/laboratorios/:id" element={<LaboratoryDetails />} />
 				<Route path="/professores/:id" element={<ProfessorDetails />} />
 				<Route path="/login" element={<Login />} />
-				<Route path="/administrador" element={<UserHome />} />
+				<Route path="/administrador" element={<AdminHome />} />
 				<Route path="/administrador/professores" element={<AdminProfessors />} />
 				<Route path="/administrador/laboratorios" element={<AdminLaboratories />} />
 				<Route path="/administrador/laboratorios/cadastrar" element={<AdminAddLaboratory />} />

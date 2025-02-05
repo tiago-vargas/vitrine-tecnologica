@@ -1,5 +1,5 @@
 
-function UserHome(): JSX.Element {
+function AdminHome(): JSX.Element {
 	return (
 		<header>
 			<h1>Administrador</h1>
@@ -7,4 +7,4 @@ function UserHome(): JSX.Element {
 	);
 }
 
-export default UserHome;
+export default AdminHome;
