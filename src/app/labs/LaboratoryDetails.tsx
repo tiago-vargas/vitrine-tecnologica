@@ -11,6 +11,10 @@ function LaboratoryDetails(): JSX.Element {
 	const [collaborators, setCollaborators] = useState<Professor[]>([]);
 	const [isPresentingForm, setIsPresentingForm] = useState(false);
 	const [requestDetails, setRequestDetails] = useState("");
+	const [requesterName, setRequesterName] = useState("");
+	const [requesterEmail, setRequesterEmail] = useState("");
+	const [requesterCompany, setRequesterCompany] = useState("");
+	const [requesterPhoneNumber, setRequesterPhoneNumber] = useState("");
 
 	const handleRequestService = () => {
 		setIsPresentingForm(true);
@@ -90,10 +94,16 @@ function LaboratoryDetails(): JSX.Element {
 
 							<form onSubmit={handleSubmitRequest} className="Form">
 								<label htmlFor="requester-name">Nome</label>
-								<input id="requester-name" type="text" />
+								<input id="requester-name" type="text" value={requesterName} onChange={(e) => setRequesterName(e.target.value)} />
 
 								<label htmlFor="requester-email">E-Mail</label>
-								<input type="email" id="requester-email" />
+								<input type="email" id="requester-email" value={requesterEmail} onChange={(e) => setRequesterEmail(e.target.value)} />
+
+								<label htmlFor="requester-company">Empresa</label>
+								<input id="requester-company" type="text" value={requesterCompany} onChange={(e) => setRequesterCompany(e.target.value)} />
+
+								<label htmlFor="requester-phone">Telefone</label>
+								<input id="requester-phone" type="text" value={requesterPhoneNumber} onChange={(e) => setRequesterPhoneNumber(e.target.value)} />
 
 								<label htmlFor="textarea">Detalhes da requisição</label>
 								<textarea

@@ -26,6 +26,8 @@ interface ServiceRequest {
 	requesterName: string;
 	requesterEmail: string;
 	description: string;
+	requesterCompany: string,
+	requesterPhoneNumber: string,
 }
 
 interface User {
