@@ -150,6 +150,9 @@ function AdminEditLaboratory(): JSX.Element {
 }
 
 function RequestCard(props: { request: ServiceRequest }) {
+	const requestDate = new Date(props.request.requestDate);
+	const formattedDate = requestDate.toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" });
+
 	return (
 		<NavLink to="">
 			<div className="Card">
@@ -158,6 +161,7 @@ function RequestCard(props: { request: ServiceRequest }) {
 				<p><strong>E-mail:</strong> {props.request.requesterEmail}</p>
 				<p><strong>Telefone:</strong> {props.request.requesterPhoneNumber}</p>
 				<p><strong>Descrição:</strong> {props.request.description}</p>
+				<p><strong>Data da Requisição:</strong> {formattedDate}</p>
 			</div>
 		</NavLink>
 	);

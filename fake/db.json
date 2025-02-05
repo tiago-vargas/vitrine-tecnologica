@@ -170,7 +170,8 @@
 			"requesterEmail": "requester.1@email.com",
 			"description": "Description 1",
 			"requesterCompany": "Company 1",
-			"requesterPhoneNumber": "123456789"
+			"requesterPhoneNumber": "123456789",
+			"requestDate": "2023-10-01T10:00:00Z"
 		},
 		{
 			"id": "2",
@@ -179,7 +180,8 @@
 			"requesterEmail": "requester.2@email.com",
 			"description": "Description 2",
 			"requesterCompany": "Company 2",
-			"requesterPhoneNumber": "987654321"
+			"requesterPhoneNumber": "987654321",
+			"requestDate": "2023-10-02T11:00:00Z"
 		},
 		{
 			"id": "3",
@@ -188,7 +190,8 @@
 			"requesterEmail": "requester.3@email.com",
 			"description": "Description 3",
 			"requesterCompany": "Company 3",
-			"requesterPhoneNumber": "123123123"
+			"requesterPhoneNumber": "123123123",
+			"requestDate": "2023-10-03T12:00:00Z"
 		},
 		{
 			"id": "4",
@@ -197,7 +200,8 @@
 			"requesterEmail": "requester.4@email.com",
 			"description": "Description 4",
 			"requesterCompany": "Company 4",
-			"requesterPhoneNumber": "321321321"
+			"requesterPhoneNumber": "321321321",
+			"requestDate": "2023-10-04T13:00:00Z"
 		},
 		{
 			"id": "5",
@@ -206,7 +210,8 @@
 			"requesterEmail": "requester.5@email.com",
 			"description": "Description 5",
 			"requesterCompany": "Company 5",
-			"requesterPhoneNumber": "456456456"
+			"requesterPhoneNumber": "456456456",
+			"requestDate": "2023-10-05T14:00:00Z"
 		},
 		{
 			"id": "6",
@@ -215,7 +220,8 @@
 			"requesterEmail": "requester.6@email.com",
 			"description": "Description 6",
 			"requesterCompany": "Company 6",
-			"requesterPhoneNumber": "654654654"
+			"requesterPhoneNumber": "654654654",
+			"requestDate": "2023-10-06T15:00:00Z"
 		},
 		{
 			"id": "7",
@@ -224,16 +230,28 @@
 			"requesterEmail": "requester.7@email.com",
 			"description": "Description 7",
 			"requesterCompany": "Company 7",
-			"requesterPhoneNumber": "789789789"
+			"requesterPhoneNumber": "789789789",
+			"requestDate": "2023-10-07T16:00:00Z"
 		},
 		{
 			"id": "8",
-			"laboratoryId": 5,
+			"laboratoryId": 6,
 			"requesterName": "Requester 8",
 			"requesterEmail": "requester.8@email.com",
 			"description": "Description 8",
 			"requesterCompany": "Company 8",
-			"requesterPhoneNumber": "987987987"
+			"requesterPhoneNumber": "987987987",
+			"requestDate": "2023-10-08T17:00:00Z"
+		},
+		{
+			"id": "9",
+			"laboratoryId": 6,
+			"requesterName": "Requester 9",
+			"requesterEmail": "requester.9@email.com",
+			"description": "Description 9",
+			"requesterCompany": "Company 9",
+			"requesterPhoneNumber": "987987987",
+			"requestDate": "2023-10-09T18:00:00Z"
 		}
 	],
 	"user": [
