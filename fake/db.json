@@ -53,7 +53,7 @@
     },
     {
       "id": "3199",
-      "name": "La La Lab",
+      "name": "Lab 2",
       "fullName": "Laboratório de Música",
       "description": "Musicais",
       "offeredServices": [
@@ -63,8 +63,8 @@
     },
     {
       "id": "2b07",
-      "name": "asdfasfd",
-      "fullName": "",
+      "name": "Lab 1",
+      "fullName": "Laboratório 1",
       "description": "",
       "offeredServices": [],
       "responsibleProfessorId": 0
