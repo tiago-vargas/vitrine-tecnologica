@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { Professor } from "../../models";
+import { Professor, mapProfDbToTs } from "../../models";
+import { supabase } from "../../utils/supabase";
 // import "./AdminEditProfessor.css";
 
 function AdminEditProfessor(): JSX.Element {
@@ -10,10 +11,19 @@ function AdminEditProfessor(): JSX.Element {
 	const navigate = useNavigate();
 
 	useEffect(() => {
-		fetch(`http://localhost:5000/professor/${id}`)
-			.then(response => response.json())
-			.then(data => setFormData(data))
-			.catch(error => console.error('Error fetching professor:', error));
+		async function fetchProfessor() {
+			const { data, error } = await supabase
+				.from("professor")
+				.select("*")
+				.eq("id", id)
+				.single();
+			if (error) {
+				console.error('Error fetching professor:', error);
+			} else {
+				setFormData(data ? mapProfDbToTs(data) : null);
+			}
+		}
+		if (id) fetchProfessor();
 	}, [id]);
 
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -25,15 +35,17 @@ function AdminEditProfessor(): JSX.Element {
 
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
+		if (!formData) return;
 		try {
-			const response = await fetch(`http://localhost:5000/professor/${id}`, {
-				method: "PUT",
-				headers: {
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify(formData),
-			});
-			if (response.ok) {
+			const { error } = await supabase
+				.from("professor")
+				.update({
+					name: formData.name,
+					email: formData.email,
+					area_of_expertise: formData.areaOfExpertise,
+				})
+				.eq("id", id);
+			if (!error) {
 				navigate("/administrador/professores");
 			} else {
 				setError("Erro ao editar professor");
@@ -46,10 +58,11 @@ function AdminEditProfessor(): JSX.Element {
 
 	const handleDelete = async () => {
 		try {
-			const response = await fetch(`http://localhost:5000/professor/${id}`, {
-				method: "DELETE",
-			});
-			if (response.ok) {
+			const { error } = await supabase
+				.from("professor")
+				.delete()
+				.eq("id", id);
+			if (!error) {
 				navigate("/administrador/professores");
 			} else {
 				setError("Erro ao deletar professor");

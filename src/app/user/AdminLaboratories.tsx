@@ -1,16 +1,25 @@
 import { useEffect, useState } from "react";
-import { Laboratory } from "../../models";
+import { Laboratory, mapLabDbToTs } from "../../models";
+import { supabase } from "../../utils/supabase";
 import Card from "../Card";
 
 function AdminLaboratories(): JSX.Element {
 	const [laboratories, setLaboratories] = useState<Laboratory[]>([]);
 
 	useEffect(() => {
-		fetch("http://localhost:5000/laboratory")
-			.then(response => response.json())
-			.then(data => setLaboratories(data))
-			.catch(error => console.error('Error fetching laboratories:', error));
-	});
+		async function getLaboratories() {
+			const { data: laboratories, error } = await supabase
+				.from("laboratory")
+				.select("*");
+			if (error) {
+				console.error('Error fetching laboratories:', error);
+			} else {
+				let labs = laboratories.map(mapLabDbToTs)
+				setLaboratories(labs);
+			}
+		}
+		getLaboratories();
+	}, []);
 
 	return (
 		<div>

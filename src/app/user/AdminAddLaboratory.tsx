@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Professor } from "../../models";
+import { Professor, mapProfDbToTs } from "../../models";
+import { supabase } from "../../utils/supabase";
 import "./AdminAddLaboratory.css";
 
 function AdminAddLaboratory(): JSX.Element {
@@ -17,10 +18,17 @@ function AdminAddLaboratory(): JSX.Element {
 	const navigate = useNavigate();
 
 	useEffect(() => {
-		fetch("http://localhost:5000/professor")
-			.then(response => response.json())
-			.then(data => setProfessors(data))
-			.catch(error => console.error('Error fetching professors:', error));
+		async function getProfessors() {
+			const { data, error } = await supabase
+				.from("professor")
+				.select("*");
+			if (error) {
+				console.error('Error fetching professors:', error);
+			} else {
+				setProfessors(data ? data.map(mapProfDbToTs) : []);
+			}
+		}
+		getProfessors();
 	}, []);
 
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -31,14 +39,16 @@ function AdminAddLaboratory(): JSX.Element {
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
 		try {
-			const response = await fetch("http://localhost:5000/laboratory", {
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify(formData),
-			});
-			if (response.ok) {
+			const { error } = await supabase
+				.from("laboratory")
+				.insert([{
+					name: formData.name,
+					full_name: formData.fullName,
+					description: formData.description,
+					offered_services: formData.offeredServices,
+					responsible_professor_id: formData.responsibleProfessorId,
+				}]);
+			if (!error) {
 				navigate("/administrador/laboratorios");
 			} else {
 				setError("Erro ao cadastrar laboratório");

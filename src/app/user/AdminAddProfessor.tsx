@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { supabase } from "../../utils/supabase";
 // import "./AdminAddProfessor.css";
 
 function AdminAddProfessor(): JSX.Element {
@@ -19,14 +20,14 @@ function AdminAddProfessor(): JSX.Element {
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
 		try {
-			const response = await fetch("http://localhost:5000/professor", {
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify(formData),
-			});
-			if (response.ok) {
+			const { error } = await supabase
+				.from("professor")
+				.insert([{
+					name: formData.name,
+					email: formData.email,
+					area_of_expertise: formData.areaOfExpertise,
+				}]);
+			if (!error) {
 				navigate("/administrador/professores");
 			} else {
 				setError("Erro ao cadastrar professor");

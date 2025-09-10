@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { Laboratory, Professor } from "../../models";
+import { Laboratory, Professor, mapLabDbToTs, mapProfDbToTs, mapLabCollabDbToTs, LaboratoryCollaborator } from "../../models";
+import { supabase } from "../../utils/supabase";
 import Card from "../Card";
 
 function ProfessorDetails(): JSX.Element {
@@ -10,32 +11,75 @@ function ProfessorDetails(): JSX.Element {
 	const [collaboratorLabs, setCollaboratorLabs] = useState<Laboratory[]>([]);
 
 	useEffect(() => {
-		fetch(`http://localhost:5000/professor/${id}`)
-			.then(response => response.json())
-			.then(data => setProfessor(data))
-			.catch(error => console.error('Error fetching professor:', error));
+		async function fetchProfessor() {
+			const { data, error } = await supabase
+				.from("professor")
+				.select("*")
+				.eq("id", id)
+				.single();
+			if (error) {
+				console.error('Error fetching professor:', error);
+			} else {
+				setProfessor(data ? mapProfDbToTs(data) : null);
+			}
+		}
+
+		if (id) {
+			fetchProfessor();
+		}
 	}, [id]);
 
 	useEffect(() => {
-		fetch(`http://localhost:5000/laboratory?responsibleProfessorId=${id}`)
-			.then(response => response.json())
-			.then(data => setCoordinatorLabs(data))
-			.catch(error => console.error('Error fetching coordinator labs:', error));
+		async function fetchCoordinatorLabs() {
+			const { data, error } = await supabase
+				.from("laboratory")
+				.select("*")
+				.eq("responsible_professor_id", id);
+			if (error) {
+				console.error('Error fetching coordinator labs:', error);
+			} else {
+				setCoordinatorLabs(data ? data.map(mapLabDbToTs) : []);
+			}
+		}
+
+		if (id) {
+			fetchCoordinatorLabs();
+		}
 	}, [id]);
 
 	useEffect(() => {
-		fetch(`http://localhost:5000/laboratoryCollaborator?professorId=${id}`)
-			.then(response => response.json())
-			.then(data => {
-				const labPromises = data.map((collaborator: { laboratoryId: string }) =>
-					fetch(`http://localhost:5000/laboratory/${collaborator.laboratoryId}`)
-						.then(response => response.json())
-				);
-				Promise.all(labPromises)
-					.then(labs => setCollaboratorLabs(labs))
-					.catch(error => console.error('Error fetching collaborator labs:', error));
-			})
-			.catch(error => console.error('Error fetching collaborator data:', error));
+		async function fetchCollaboratorLabs() {
+			const { data: collabs, error } = await supabase
+				.from("laboratory_collaborator")
+				.select("*")
+				.eq("professor_id", id);
+
+			if (error) {
+				console.error('Error fetching collaborator data:', error);
+				return;
+			}
+
+			const mappedCollabs = collabs ? collabs.map(mapLabCollabDbToTs) : [];
+			if (mappedCollabs.length > 0) {
+				const labIds = mappedCollabs.map((c: LaboratoryCollaborator) => c.laboratoryId);
+				const { data: labs, error: labsError } = await supabase
+					.from("laboratory")
+					.select("*")
+					.in("id", labIds);
+
+				if (labsError) {
+					console.error('Error fetching collaborator labs:', labsError);
+				} else {
+					setCollaboratorLabs(labs ? labs.map(mapLabDbToTs) : []);
+				}
+			} else {
+				setCollaboratorLabs([]);
+			}
+		}
+
+		if (id) {
+			fetchCollaboratorLabs();
+		}
 	}, [id]);
 
 	if (!professor) {

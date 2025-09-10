@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Professor } from "../../models";
+import { Professor, mapProfDbToTs } from "../../models";
+import { supabase } from "../../utils/supabase";
 import ProfessorCard from "../ProfessorCard";
 // import "./AdminProfessors.css";
 
@@ -9,10 +10,17 @@ function AdminProfessors(): JSX.Element {
 	const navigate = useNavigate();
 
 	useEffect(() => {
-		fetch("http://localhost:5000/professor")
-			.then(response => response.json())
-			.then(data => setProfessors(data))
-			.catch(error => console.error('Error fetching professors:', error));
+		async function getProfessors() {
+			const { data, error } = await supabase
+				.from("professor")
+				.select("*");
+			if (error) {
+				console.error('Error fetching professors:', error);
+			} else {
+				setProfessors(data ? data.map(mapProfDbToTs) : []);
+			}
+		}
+		getProfessors();
 	}, []);
 
 	const handleAddProfessor = () => {

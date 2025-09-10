@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
-import { Laboratory, ServiceRequest } from "../../models";
+import { Laboratory, ServiceRequest, mapLabDbToTs, mapServiceReqDbToTs } from "../../models";
+import { supabase } from "../../utils/supabase";
 // import "./AdminEditLaboratory.css";
 
 function AdminEditLaboratory(): JSX.Element {
@@ -11,19 +12,34 @@ function AdminEditLaboratory(): JSX.Element {
 	const navigate = useNavigate();
 
 	useEffect(() => {
-		fetch(`http://localhost:5000/laboratory/${id}`)
-			.then(response => response.json())
-			.then(data => setFormData(data))
-			.catch(error => console.error('Error fetching laboratory:', error));
+		async function fetchLab() {
+			const { data: formData, error } = await supabase
+				.from("laboratory")
+				.select("*")
+				.eq("id", id)
+				.single();
+			if (error) {
+				console.error('Error fetching laboratory:', error);
+			} else {
+				setFormData(formData ? mapLabDbToTs(formData) : null);
+			}
+		}
+		if (id) fetchLab();
 	}, [id]);
 
 	useEffect(() => {
-		if (formData?.id) {
-			fetch(`http://localhost:5000/serviceRequest?laboratoryId=${formData.id}`)
-				.then(response => response.json())
-				.then(data => setServiceRequests(data))
-				.catch(error => console.error('Error fetching service requests:', error));
+		async function fetchRequests() {
+			const { data, error } = await supabase
+				.from("serviceRequest")
+				.select("*")
+				.eq("laboratory_id", formData!.id);
+			if (error) {
+				console.error('Error fetching service requests:', error);
+			} else {
+				setServiceRequests(data ? data.map(mapServiceReqDbToTs) : []);
+			}
 		}
+		if (formData?.id) fetchRequests();
 	}, [formData?.id]);
 
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -36,14 +52,17 @@ function AdminEditLaboratory(): JSX.Element {
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
 		try {
-			const response = await fetch(`http://localhost:5000/laboratory/${id}`, {
-				method: "PUT",
-				headers: {
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify(formData),
-			});
-			if (response.ok) {
+			const { error } = await supabase
+				.from("laboratory")
+				.update({
+					name: formData!.name,
+					full_name: formData!.fullName,
+					description: formData!.description,
+					offered_services: formData!.offeredServices,
+					responsible_professor_id: formData!.responsibleProfessorId,
+				})
+				.eq("id", id);
+			if (!error) {
 				navigate("/administrador/laboratorios");
 			} else {
 				setError("Erro ao editar laboratório");
@@ -56,10 +75,11 @@ function AdminEditLaboratory(): JSX.Element {
 
 	const handleDelete = async () => {
 		try {
-			const response = await fetch(`http://localhost:5000/laboratory/${id}`, {
-				method: "DELETE",
-			});
-			if (response.ok) {
+			const { error } = await supabase
+				.from("laboratory")
+				.delete()
+				.eq("id", id);
+			if (!error) {
 				navigate("/administrador/laboratorios");
 			} else {
 				setError("Erro ao deletar laboratório");
@@ -107,7 +127,7 @@ function AdminEditLaboratory(): JSX.Element {
 					<textarea
 						name="description"
 						id="lab-description"
-						value={formData.description}
+						value={formData.description || ""}
 						onChange={handleChange}
 					/>
 
@@ -117,7 +137,7 @@ function AdminEditLaboratory(): JSX.Element {
 						name="offeredServices"
 						id="lab-services"
 						placeholder="Serviços (separados por vírgula)"
-						value={formData.offeredServices.join(", ")}
+						value={formData.offeredServices?.join(", ") || ""}
 						onChange={(e) => setFormData({ ...formData, offeredServices: e.target.value.split(", ") })}
 					/>
 
@@ -126,7 +146,7 @@ function AdminEditLaboratory(): JSX.Element {
 						type="number"
 						name="responsibleProfessorId"
 						placeholder="ID do Professor Responsável"
-						value={formData.responsibleProfessorId}
+						value={formData.responsibleProfessorId || ""}
 						onChange={handleChange}
 					/>
 					<button type="submit">Salvar</button>
@@ -150,7 +170,7 @@ function AdminEditLaboratory(): JSX.Element {
 }
 
 function RequestCard(props: { request: ServiceRequest }) {
-	const requestDate = new Date(props.request.requestDate);
+	const requestDate = new Date(props.request.date);
 	const formattedDate = requestDate.toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" });
 
 	return (
